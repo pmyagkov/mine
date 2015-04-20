@@ -1,0 +1,29 @@
+{
+  "name": "musicMine",
+  "version": "0.0.1",
+  "description": "",
+  "main": "vk.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "pmyagkov",
+  "license": "MIT",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "devDependencies": {
+    "babel": "^5.0.8",
+    "babelify": "^6.0.2",
+    "browserify": "^9.0.7",
+    "gulp-babel": "^5.0.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-contrib-copy": "0.0.2",
+    "gulp-sourcemaps": "^1.5.1"
+  },
+  "dependencies": {
+    "gulp": "^3.8.11",
+    "vow": "^0.4.9"
+  }
+}
