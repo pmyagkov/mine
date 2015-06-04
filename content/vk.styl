@@ -1,0 +1,28 @@
+.mine_download
+  background: url('images/cassette.png') 0 -5px no-repeat !important
+  width: 30px !important
+  height: 22px !important
+  padding: 0 !important
+  margin: 4px 10px 0 0 !important
+  display: none !important
+  opacity: 0.8 !important
+
+  &:hover
+    opacity: 1 !important
+
+  .audio:hover &
+    display: block !important
+    
+.mine-bpm
+  position: absolute
+  top: 21px
+  color: rgb(119, 119, 119)
+  font-weight: bold
+
+  &::after
+    margin-left: 3px
+    content: 'kbps'
+    font-weight: normal
+
+.audio .info
+  margin-top: -4px

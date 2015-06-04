@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Mine",
-  "version": "0.0.1",
+  "version": "0.0.3",
 
   "description": "Mine extension allows you to download music from vk.com",
 
@@ -11,6 +11,7 @@
     {
       "matches": ["http://vk.com/*", "https://vk.com/*"],
       "js": ["vk.js"],
+      "css": ["vk.css"],
       "run_at": "document_start"
     }
   ],
@@ -31,6 +32,7 @@
     "downloads",
     "storage",
     "http://*.vk-cdn.net/*",
+    "http://*.vk.me/*",
     "https://vk.com/*",
     "http://vk.com/*"
   ],

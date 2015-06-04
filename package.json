@@ -19,11 +19,18 @@
     "browserify": "^9.0.7",
     "gulp-babel": "^5.0.0",
     "gulp-concat": "^2.5.2",
-    "gulp-contrib-copy": "0.0.2",
-    "gulp-sourcemaps": "^1.5.1"
+    "gulp-contrib-copy": "0.1.2",
+    "gulp-debug": "^2.0.1",
+    "gulp-newer": "^0.5.0",
+    "gulp-sourcemaps": "^1.5.1",
+    "gulp-stylus": "^2.0.3",
+    "lodash": "^3.9.3",
+    "through2": "^0.6.5",
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
     "gulp": "^3.8.11",
+    "jquery": "^2.1.4",
     "vow": "^0.4.9"
   }
 }

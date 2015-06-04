@@ -53,7 +53,6 @@ class VkAudio {
         return new vow.Promise(function(resolve, reject) {
             $.ajax(that._url, {
                 method: 'HEAD',
-                crossDomain: true,
                 complete: function(xhr) {
                     that._fileSize = xhr.getResponseHeader('Content-Length');
                     that._bpm = that._calculateBpm();
