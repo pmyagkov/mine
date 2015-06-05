@@ -7,6 +7,8 @@ var vow = require('vow');
 
 document.addEventListener('DOMContentLoaded', onDomReady);
 
+let bgUrl = chrome.extension.getURL('images/cassette.png');
+
 function onDomReady() {
     setInterval(processAudio, 250);
     log('inited');
@@ -20,8 +22,10 @@ function processSingleAudio(audioNode) {
     let vkAudio = new VkAudio($audio);
 
     var $downloadLink = $('<a>', {
-        'class': 'mine_download fl_r'
-    }).appendTo($audio.find('.actions'));
+            'class': 'mine_download fl_r'
+        })
+        .css('background-image', `url(${bgUrl})`)
+        .appendTo($audio.find('.actions'));
 
     audioNode.setAttribute('data-mined', 'true');
 

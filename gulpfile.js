@@ -16,12 +16,6 @@ var transformCssUrls = require('./helpers/transform-css-urls');
 
 var BUILD_FOLDER = '_built';
 
-function getExtensionId() {
-    return fs.readFileSync('extension_id');
-}
-
-var EXTENSION_ID = getExtensionId();
-
 function buildScript(taskName, path) {
     var fileName = _.last(path.split('/'));
 
@@ -49,7 +43,6 @@ gulp.task('css', function () {
             ext: 'css'
         }))
         .pipe(stylus())
-        .pipe(transformCssUrls(EXTENSION_ID))
         .pipe(gulp.dest(BUILD_FOLDER));
 });
 

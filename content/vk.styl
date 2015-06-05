@@ -1,5 +1,6 @@
 .mine_download
-  background: url('images/cassette.png') 0 -5px no-repeat !important
+  background-position: 0 -5px !important
+  background-repeat: no-repeat !important
   width: 30px !important
   height: 22px !important
   padding: 0 !important
@@ -24,5 +25,11 @@
     content: 'kbps'
     font-weight: normal
 
+  .audio.current &
+    color: rgba(255,255,255,.8)
+
 .audio .info
   margin-top: -4px
+
+.audio .actions
+  margin-top: 4px
