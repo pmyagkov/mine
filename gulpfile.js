@@ -33,6 +33,7 @@ function buildScript(taskName, path) {
     });
 }
 
+buildScript('soundcloud', './content/soundcloud.js');
 buildScript('vk', './content/vk.js');
 buildScript('bg', './background/background.js');
 
@@ -59,7 +60,7 @@ gulp.task('images', function() {
         .pipe(gulp.dest(BUILD_FOLDER + '/images'));
 });
 
-gulp.task('default', ['static', 'vk', 'bg', 'images', 'css']);
+gulp.task('default', ['static', 'soundcloud', 'vk', 'bg', 'images', 'css']);
 
 gulp.task('watch', ['default'], function() {
     gulp.watch(['./content/*.js', './content/*.styl', './background/*', './common/*', './manifest*'], ['default']);

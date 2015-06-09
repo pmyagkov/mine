@@ -13,6 +13,12 @@
       "js": ["vk.js"],
       "css": ["vk.css"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["https://soundcloud.com/*"],
+      "js": ["soundcloud.js"],
+      "css": ["soundcloud.css"],
+      "run_at": "document_start"
     }
   ],
 
@@ -28,15 +34,16 @@
     "persistent": true
   },
   "permissions": [
+    "webRequest",
+    "cookies",
     "tabs",
     "downloads",
     "storage",
-    "http://*.vk-cdn.net/*",
-    "https://*.vk-cdn.net/*",
-    "http://*.vk.me/*",
-    "https://*.vk.me/*",
-    "https://vk.com/*",
-    "http://vk.com/*"
+    "*://*.soundcloud.com/*",
+    "*://soundcloud.com/*",
+    "*://*.vk-cdn.net/*",
+    "*://*.vk.me/*",
+    "*://vk.com/*"
   ],
   "web_accessible_resources": [
     "images/*"

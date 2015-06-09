@@ -1,7 +1,11 @@
 var _ = require('lodash');
 var log = require('../common/log');
 
-chrome.extension.onRequest.addListener(function(request, c, b) {
+chrome.webRequest.onCompleted.addListener(function (details) {
+    console.dir(details);
+}, {urls: ['<all_urls>']});
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     log('request received', request);
 
     switch (request.action) {
@@ -19,5 +23,17 @@ chrome.extension.onRequest.addListener(function(request, c, b) {
             }
 
         break;
+
+        case 'cookies':
+            let details = request.details || {};
+
+            chrome.cookies.getAll(details, (cookies) => {
+                log(`cookies retrieved`);
+                console.dir(cookies);
+
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { cookies });
+                });
+            });
     }
 });
