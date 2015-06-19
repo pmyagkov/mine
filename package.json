@@ -4,7 +4,8 @@
   "description": "",
   "main": "vk.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "archive": "gulp default && (rm _built.zip || zip -r _built.zip _built)"
   },
   "author": "pmyagkov",
   "license": "MIT",
