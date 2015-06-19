@@ -32,7 +32,9 @@
     "downloads",
     "storage",
     "http://*.vk-cdn.net/*",
+    "https://*.vk-cdn.net/*",
     "http://*.vk.me/*",
+    "https://*.vk.me/*",
     "https://vk.com/*",
     "http://vk.com/*"
   ],
