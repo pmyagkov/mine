@@ -20,6 +20,9 @@
   color: rgb(119, 119, 119)
   font-weight: bold
 
+  #audio &
+    top: 23px
+
   &::after
     margin-left: 3px
     content: 'kbps'
@@ -28,8 +31,24 @@
   .audio.current &
     color: rgba(255,255,255,.8)
 
-.audio .info
-  margin-top: -4px
+.audio
+  & .info
+    margin-top: -4px
 
-.audio .actions
-  margin-top: 4px
+  & .actions
+    margin-top: 4px
+
+    #audio &
+      margin-top: 6px
+
+
+#audio [data-mined] .area {
+  padding-bottom: 2px !important
+}
+
+// на страницах профиля и сообщений иконка не должна вылезать
+#profile [data-mined] .area,
+#im_rows [data-mined] .area {
+  margin-bottom: 0 !important
+  padding-bottom: 10px !important
+}

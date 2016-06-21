@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf _built _build.zip;
+gulp default;
+zip -r _built.zip _built;

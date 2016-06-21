@@ -5,12 +5,14 @@ var log = require('../common/log');
 var VkAudio = require('../common/vkAudio');
 var vow = require('vow');
 
+const AUDIO_PROCESSING_INTERVAL = 1000;
+const AUDIO_BATCH_COUNT = 10;
+
 document.addEventListener('DOMContentLoaded', onDomReady);
 
 let bgUrl = chrome.extension.getURL('images/cassette.png');
 
 function onDomReady() {
-    setInterval(processAudio, 250);
     log('inited');
 
     processAudio();
@@ -26,6 +28,11 @@ function processSingleAudio(audioNode) {
         })
         .css('background-image', `url(${bgUrl})`)
         .appendTo($audio.find('.actions'));
+
+    log(audioNode.innerText, audioNode.getAttribute('data-mined'));
+    if (audioNode.getAttribute('data-mined')) {
+        console.trace(audioNode.innerText);
+    }
 
     audioNode.setAttribute('data-mined', 'true');
 
@@ -47,9 +54,8 @@ function processSingleAudio(audioNode) {
 }
 
 function _processAudio(nodes) {
-    var promises = _(nodes).take(10).map(e => processSingleAudio(e)).value();
-
-    var nextNodes = _.slice(nodes, 10);
+    var nextNodes = _.slice(nodes, AUDIO_BATCH_COUNT);
+    var promises = _.take(nodes, AUDIO_BATCH_COUNT).map(e => processSingleAudio(e));
 
     return vow.all(promises).then(function () {
         if (nextNodes.length > 0) {
@@ -69,7 +75,9 @@ function processAudio() {
         .filter(e => !e.getAttribute('data-mined'))
         .value();
 
-    _processAudio(nodes);
+    return _processAudio(nodes).then(() => {
+      setTimeout(processAudio, AUDIO_PROCESSING_INTERVAL);
+    });
 }
 
 //<div class="msaudioinfo" id="241238_352591675x" style="margin-left: 33px;"><b>128</b> kbps (3.71 MB)</div>
