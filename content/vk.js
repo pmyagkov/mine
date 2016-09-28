@@ -6,7 +6,7 @@ var VkAudio = require('../common/vkAudio');
 var vow = require('vow');
 
 const AUDIO_PROCESSING_INTERVAL = 1000;
-const AUDIO_BATCH_COUNT = 10;
+const AUDIO_BATCH_COUNT = 20;
 
 document.addEventListener('DOMContentLoaded', onDomReady);
 
@@ -16,6 +16,8 @@ function onDomReady() {
     log('inited');
 
     processAudio();
+
+    setInterval(processAudio, AUDIO_PROCESSING_INTERVAL);
 }
 
 function processSingleAudio(audioNode) {
@@ -57,27 +59,37 @@ function _processAudio(nodes) {
     var nextNodes = _.slice(nodes, AUDIO_BATCH_COUNT);
     var promises = _.take(nodes, AUDIO_BATCH_COUNT).map(e => processSingleAudio(e));
 
+    log(`take ${AUDIO_BATCH_COUNT} from ${nodes.length}`);
+
     return vow.all(promises).then(function () {
         if (nextNodes.length > 0) {
             return _processAudio(nextNodes);
         }
 
-        return arguments[0];
-    }, function (promises) {
-        return _processAudio();
-    });
+        console.warn('PROMISE RESOLVED');
+        return vow.resolve();
+    }, () => console.warn('PROMISE FAILED'));
 }
 
+let audioProcessing = false;
+
 function processAudio() {
-    log('processing audio');
+    if (audioProcessing) {
+        log('processing audio BLOCKED');
+        return;
+    } else {
+        log('processing audio LAUNCHED');
+    }
+
+    audioProcessing = true;
 
     var nodes = _(document.getElementsByClassName('audio'))
         .filter(e => !e.getAttribute('data-mined'))
         .value();
 
-    return _processAudio(nodes).then(() => {
-      setTimeout(processAudio, AUDIO_PROCESSING_INTERVAL);
-    });
+    let continuation = () => audioProcessing = false;
+
+    return _processAudio(nodes).then(continuation, continuation);
 }
 
 //<div class="msaudioinfo" id="241238_352591675x" style="margin-left: 33px;"><b>128</b> kbps (3.71 MB)</div>

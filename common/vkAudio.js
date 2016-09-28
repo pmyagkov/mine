@@ -11,7 +11,7 @@ class VkAudio {
         this._name = this._parseName();
         this._duration = this._parseDuration();
 
-        log(`constructing VK audio`, this);
+        //log(`constructing VK audio`, this);
     }
 
     getUrl() {
